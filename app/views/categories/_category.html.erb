@@ -1,0 +1,19 @@
+<%= link_to category , class: "link" do %>  
+  <li>
+    <div class="col-md-10">
+      <p><%= category.name %></p>
+    </div>
+    <% if current_user.admin? %>
+      <div class="col-md-2" style="padding-top: 15px">
+        <button class="btn btn-danger delete">
+          <%= link_to "Delete", category, method: :delete, :data => {confirm: "Are you sure that you wish to delete #{category.name}?"} %>
+        </button>
+      </div>
+    <% end %>
+  </li>
+<% end %>
+<style type="text/css">
+  .delete  a {
+    color: white;
+  }
+</style>

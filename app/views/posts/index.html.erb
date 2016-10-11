@@ -1,0 +1,16 @@
+  <% if user_signed_in? %>
+  <div class="indexpost">
+    <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>    
+  </div>
+  <br />
+  <br />
+  <div class="row">
+    <%= form_tag(posts_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search Post" %>
+      <%= submit_tag "Search" %>
+    <% end %>  
+  </div>
+  <div class="row clearfix">
+    <%= render @posts %>
+  </div>
+<% end %>

@@ -1,0 +1,70 @@
+<div class="well post">
+  <div class="row info-post">
+    <p class="user-name">
+      <%= link_to post.user.name, post.user %>
+      <span>posted <%= time_ago_in_words(post.created_at) %> ago.</span>
+      <span><%= button_to "delete", post, method: :delete, class: "btn btn-danger",
+        :data =>{confirm: "Are you sure that you wish to delete this post ?"} if current_user.admin? || is_current_user?(post.user) %></span>
+    </p>
+  </div>
+  <div class="row contain-file field gg">
+    <div class="post-title">
+      <p><%= link_to post.title, post %></p>
+    </div>
+    <span class="post-file">
+      <% if post.image.present? %>
+        <%= link_to post.image_url do %>
+          <%= image_tag post.image_url(:thumb).to_s %>
+        <% end %>
+      <% elsif post.attachment.present? %>
+        <%= link_to post.name_file, post.attachment_url %>
+      <% end %>
+    </span>
+  </div>
+  <div class="stats">
+    <strong id="likes_<%= post.id %>" class="stat">
+      <% if post.votes.count != 0 && post.votes.count < 2 %>
+        <%= post.votes.count %> like
+      <% elsif post.votes.count >= 2 %>
+        <%= post.votes.count %> likes        
+      <% end %>
+    </strong>
+    </a>
+  </div>
+  <div id="follow_form_<%= post.id %>">
+    <% if current_user.liked?(post) %>
+      <%= form_for(current_user.votes.find_by(post_id: post.id),
+            html: { method: :delete },
+            remote: true) do |f| %>
+        <%= f.submit "Like", class: "btn hey", id: "unlike" %>
+      <% end %>
+    <% else %>
+      <%= form_for(current_user.votes.build, remote: true) do |f| %>
+        <%= f.hidden_field :post_id, value: post.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.submit "Like", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <% if post.comments.any? %>
+        <ol class="microposts">
+          <%= render post.comments %>
+        </ol>
+      <% end %>
+      <ol class="microposts" id="new-comment-<%= post.id %>"></ol>
+      <ol class="form-comment" id="add-comment">
+        <%= form_for(post.comments.build, remote: true) do |f| %>
+          <%= f.hidden_field :post_id, value: post.id %>
+          <div class="field" id="text-field-<%= post.id %>">
+            <%= f.text_field :body, class: "form-control", id: "text-field" %>
+          </div>
+          <div class="actions">
+            <%= f.submit "Create" , class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+</div>
