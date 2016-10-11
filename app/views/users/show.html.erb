@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<div class="well show-category">
+  <% if current_user.admin? %>
+    <div class="col-md-8">
+      <p id="category-title">
+        <%= link_to @user.name, @user %>
+      </p>
+    </div>
+    <div class="col-md-4">
+      <div>
+        <p><%= link_to 'List User', users_path %></p>
+      </div>
+    </div>
+  <% else %>
+    <div>
+      <p>
+        <%= @user.name %>
+      </p>
+    </div>
+  <% end %>
+</div>
+<% if is_current_user?(@user) %>
+  <div class="row clearfix new-post-user">
+    <%= render "posts/form" %>
+  </div>
+<% end %>
+<div class="row clearfix post-user">
+  <%= render @posts %>
+  <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+</div>
+
+<style type="text/css">
+  .post-user {
+    margin-left: 1px;
+    margin-right: -100px;
+  }
+  .new-post-user {
+    margin-left: 10px;
+    margin-right: -90px;
+  }
+</style>

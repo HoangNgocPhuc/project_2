@@ -1,0 +1,8 @@
+$('#follow_form_<%= @post.id %>').html('<%= escape_javascript render "users/unlike" %>');
+$('#likes_<%= @post.id %>').html(`
+  <% if @post.likes.count != 0 && @post.likes.count < 2 %>
+    <%= @post.likes.count %> like
+  <% elsif @post.likes.count != 0 && @post.likes.count >= 2 %>
+    <%= @post.likes.count %> likes
+  <% end %>
+`);

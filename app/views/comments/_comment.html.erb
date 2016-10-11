@@ -1,0 +1,12 @@
+<li>
+  <span class="user"><%= link_to comment.user.name, comment.user %></span>
+  <span class="content"><%= comment.body %></span>
+  <span class="timestamp">
+    <p class="delete-comment"><%= link_to "delete", comment, method: :delete, confirm: "Are you sure that you wish to delete ?" if is_current_user?(comment.user) %></p>
+  </span>
+</li>
+<style type="text/css">
+  .delete-comment a {
+    color: red;
+  }
+</style>

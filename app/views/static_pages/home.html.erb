@@ -1,0 +1,19 @@
+<div class="col-md-4 list-category">
+  <h1><%= link_to "Categories", categories_path %></h1>
+  <ul class="heroes-new">
+    <% @categories.each do |c| %>
+      <li>
+        <p><%= link_to c.name, c , class: "link" %></p>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<div class="col-md-8 list-post">
+  <div class="row clearfix">
+    <%= render "posts/form" %>
+  </div>
+  <div class="row clearfix">
+    <%= render @posts %>
+    <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

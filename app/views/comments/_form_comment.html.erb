@@ -1,0 +1,12 @@
+<div class="row">
+  <%= form_for(@comment) do |f| %>
+    
+    <%= f.hidden_field :post_id, value: @post.id %>
+    <div class="field">
+      <%= f.text_field :body, class: "form-control" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Create" , class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

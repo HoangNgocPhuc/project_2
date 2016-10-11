@@ -1,0 +1,2 @@
+$('#new-comment-<%= @comment.post.id %>').append('<%= escape_javascript render "comments/new_comment" %>');
+$('#text-field').val("");

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row well">
+  <% if current_user.admin? %>
+    <div class="col-md-8">
+      <p id="category-title">
+        <%= link_to @category.name, @category %>
+      </p>
+    </div>
+    <div class="col-md-4">
+      <div class="col-md-6">
+        <p><%= link_to 'Edit', edit_category_path(@category) %></p>
+      </div>
+      <div class="col-md-6">
+        <p><%= link_to 'List Categories', categories_path %></p>
+      </div>
+    </div>
+  <% else %>
+    <div>
+      <p>
+        <%= @category.name %>
+      </p>
+    </div>
+  <% end %>
+</div>
+<div class="row"><%= render "posts/form_category" %></div>
+<div class="row clearfix">
+  <%= render @posts %>
+  <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+</div>

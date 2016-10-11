@@ -1,0 +1,11 @@
+<div class = "well">
+  <%= form_for @post, html: { multipart: true } do |f| %>
+    <div class="field">
+      <%= f.text_area :title, placeholder: "Write something", class: "form-upload" %>      
+    </div>
+    <%= f.label :attachment %>
+    <%= f.hidden_field :category_id, value: @category.id %>
+    <%= f.file_field :attachment %>
+    <%= f.submit "Upload", class: "btn btn-primary upload" %>
+  <% end %>
+</div>
