@@ -187,9 +187,6 @@ body, html {
   padding-left: -10px;
 }
 
-.container {
-  margin-left: 10px;
-}
 
 /* upload file button */
 
@@ -382,4 +379,35 @@ span.picture {
 
 .user-name {
   color: blue;
+}
+
+.list-notice{
+  border: 1px solid #999;
+  background: white;
+  position: absolute;
+  z-index: 100;
+  margin-left: 761px;
+  top: 55px;
+  display:block;
+}
+.list-notice .avatar img{
+  border-radius: 50%;
+}
+.list-notice .text{
+  color: #000;
+  font-size: 1.4rem;
+}
+.list-notice .time{
+  color: #5C554B;
+  font-size: 1.2rem;
+}
+.list-notice .content{
+  padding: 10px 0;
+}
+.list-notice .content:hover{
+  background: #DDDDDD;
+  cursor: pointer;
+}
+a:hover{
+  cursor: pointer;
 }

@@ -9,17 +9,19 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :post_likes, through: :votes, source: :post
-
+  has_many :notifications, dependent: :destroy
   def admin?
     self.role == 1
   end
 
-  def like_post(post)
-    self.votes.create(post_id: post.id)
+  def like_post(post, user)
+    v = self.votes.create(post_id: post.id)
+    v.notifications.create({post_id: post.id, user_id: user.id})
   end
 
   def unlike_post(post)
-    self.votes.find_by(post_id: post.id).destroy
+    v = self.votes.find_by(post_id: post.id).destroy
+    v.notifications.delete_all
   end
 
   def liked?(post)

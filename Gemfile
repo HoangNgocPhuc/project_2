@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+gem 'rails', '5.0.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -27,7 +27,9 @@ gem 'carrierwave'
 gem "bootstrap-sass"
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
-gem 'rmagick', '~> 2.15', '>= 2.15.4'
+
+gem 'rmagick'
+gem 'json', github: 'flori/json', branch: 'v1.8'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

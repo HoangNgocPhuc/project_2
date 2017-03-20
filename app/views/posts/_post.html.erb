@@ -32,6 +32,7 @@
     </a>
   </div>
   <div id="follow_form_<%= post.id %>">
+
     <% if current_user.liked?(post) %>
       <%= form_for(current_user.votes.find_by(post_id: post.id),
             html: { method: :delete },

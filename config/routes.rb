@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :notifications
   resources :posts
   resources :comments
   resources :votes, only: [:create, :destroy]

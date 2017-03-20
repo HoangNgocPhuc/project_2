@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
     end
     if @comment.save
       @comment.update_attribute(:user_id, current_user.id)
+      @comment.notifications.create({user_id: current_user.id, post_id: @post.id})
       # redirect_to :back
       respond_to do |format|
         format.html { redirect_to :back }
